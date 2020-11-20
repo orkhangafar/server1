@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block content %}
+	<!-- Features section -->
+<br>
+<br>
+	<section class="features-section">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-4 p-0 feature">
+					<div class="feature-inner">
+					</div>
+				</div>
+				<div class="col-md-4 p-0 feature">
+					<div class="feature-inner">
+						<div class="feature-icon">
+							<img src="" alt="">
+						</div>
+						<h2>{{ category.title }}</h2>
+					</div>
+				</div>
+				<div class="col-md-4 p-0 feature">
+					<div class="feature-inner">
+						<div class="feature-icon">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Features section end -->
+	<!-- Product filter section -->
+	<section class="product-filter-section">
+		<div class="container">
+			<div class="section-title">
+			</div>
+			<div class="row">
+				{% for post in category.posts.all %}
+				<div class="col-lg-3 col-sm-6">
+					<div class="product-item">
+						<div class="pi-pic">
+							<img src="{{ post.image.url }}" alt="" height="400" >
+							<div class="pi-links">
+								<a href="#" class="wishlist-btn">{{ post.price }} AZN</a>
+							</div>
+						</div>
+						<p>Paylaşıldı: {{ post.created }}</p>
+						<div class="pi-text">
+							<a href="{% url 'single' post.slug %}"><h4>{{ post.title }}</h4></a>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+
+			</div>
+			<div class="text-center pt-5">
+
+			</div>
+		</div>
+	</section>
+	<!-- Product filter section end -->
+{% endblock %}

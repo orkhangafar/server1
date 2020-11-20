@@ -1,0 +1,48 @@
+<{% extends "base.html" %}
+{% load static %}
+{% block content %}
+            <!-- checkout section  -->
+	<section class="checkout-section spad">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-6" style="border:2px solid #eee;padding:20px;background:#fff;">
+                    {% if user.is_authenticated %}
+                        <h3>Giriş Etmisiniz,Qeydiyyatınız var</h3>
+                        {% else %}
+                        {% if form.errors %}
+
+                        {% for key,value in form.errors.items %}
+                        <div class="alert alert-danger">
+                            {{ value }}
+                        </div>
+
+                        {% endfor %}
+
+                        {% endif %}
+					<form method="post" class="checkout-form">
+						{% csrf_token %}
+						<h3 style="text-align:center;">Qeydiyyat</h3>
+						<p style="text-align:center;margin-bottom:20px;margin-top:20px;">
+                            Qeydiyyatdan Keçmək Çox Sadədir
+                        </p>
+						<div class="row justify-content-center">
+							<div class="col-md-12">
+								<input type="text" name="username" {% if form.username.errors %} style="border:1px solid red;" {% endif %} placeholder="İstifadəçi Adı">
+								<input type="text" name="email" {% if form.password.errors %} style="border:1px solid red;" {% endif %} placeholder="Elektron Poçt">
+                                <input type="password" name="password1" {% if form.password.errors %} style="border:1px solid red;" {% endif %} placeholder="Şifrə">
+                                <input type="password" name="password2" {% if form.password.errors %} style="border:1px solid red;" {% endif %} placeholder="Şifrə Təkrar">
+							</div>
+
+						</div>
+						<button class="site-btn submit-order-btn">Daxil Ol</button>
+					</form>
+					<hr style="margin-top:30px;margin-bottom:30px;">
+                        <a href="" style="float:right;" class="genric-btn success-border circle arrow">Qeydiyyat<span class="lnr lnr-arrow-right"></span></a>
+                        <a href="" style="float:left;" class="genric-btn success-border circle arrow">Şifrəmi Unutdum</a>
+                    {% endif %}
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- checkout section end -->
+{% endblock %}

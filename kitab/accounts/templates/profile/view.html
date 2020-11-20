@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+
+
+	<!-- cart section end -->
+	<section class="cart-section spad">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8">
+					<div class="cart-table">
+                        <h3><center>{{ profile.user.username }}</center></h3>
+						<div class="cart-table-warp">
+							<table>
+
+							<tbody>
+								<tr>
+									<td class="pt">
+										<center><img src="{{ profile.avatar.url }}" width="180"  height="270" alt=""></center>
+									</td>
+								</tr>
+
+							</tbody>
+						</table>
+						</div>
+						<div class="total-cost">
+                            <h6><center>Satışda Olanlar: <span>{{ profile.user.userposts.count }}</span></center></h6>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- cart section end -->
+
+	<!-- Related product section -->
+	<section class="related-product-section">
+		<div class="container">
+			<div class="section-title text-uppercase">
+				<h2>Satışda Olanlar</h2>
+			</div>
+			<div class="row">
+				<div class="col-lg-3 col-sm-6">
+
+					<div class="product-item">
+						{% for post in profile.user.userposts.all %}
+						<div class="pi-pic">
+							<img src="{{ post.image.url}}" alt="">
+
+							<div class="pi-links">
+								<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
+								<a href="#" class="wishlist-btn">{{ post.price }} AZN></a>
+							</div>
+						</div>
+						<div class="pi-text">
+                            <p><h5>{{ post.title }}</h5></p>
+						</div>
+						{% endfor %}
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</section>
+	<!-- Related product section end -->
+
+{% endblock %}

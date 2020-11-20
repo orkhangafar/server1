@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+	<!-- Page info -->
+	<div class="page-top-info">
+		<div class="container">
+			<center><a href=""><h4>{{ single.title }}</h4></a></center>
+			<div class="site-pagination">
+			</div>
+		</div>
+	</div>
+	<!-- Page info end -->
+
+
+	<!-- product section -->
+	<section class="product-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="product-pic-zoom">
+						<img class="product-big-img" src="{{ single.image.url }}" width="100%" alt="">
+					</div>
+				</div>
+				<div class="col-lg-6 product-details">
+					<div class="col-lg-8 order-2 order-lg-1">
+					<form class="checkout-form">
+						<div class="cf-title">
+							<h3>Qiymət: {{ single.price }} AZN</h3>
+						</div>
+						<div class="cf-title">
+							<h3>Satıcı: {{ single.user.username }}</h3>
+						</div>
+						<div class="cf-title">
+							<h2>Tel: {{ single.phone }}</h2>
+						</div>
+					</form>
+					</div>
+					{% if single.user == request.user %}
+					<a href="{% url 'single' single.slug %}/delete" class="site-btn submit-order-btn">Sil</a>
+					<br>
+					<br>
+					<a href="{% url 'single' single.slug %}/update" class="site-btn submit-order-btn">Redaktə et</a>
+					{% endif %}
+					<div id="accordion" class="accordion-area">
+						<div class="panel">
+							<div class="panel-header" id="headingOne">
+								<button class="panel-link active" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">Ətraflı Məlumat</button>
+							</div>
+							<div id="collapse1" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+								<div class="panel-body">
+									<p>{{ single.content }}</p>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+	<!-- product section end -->
+
+
+
+ {% endblock %}

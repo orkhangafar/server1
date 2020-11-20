@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+	<!-- Hero section -->
+	<section class="hero-section">
+		<div class="hero-slider owl-carousel">
+			<div class="hs-item set-bg" data-setbg="{% static "img/fon1.jpg" %}">
+				<div class="container">
+					<div class="row">
+						<div class="col-xl-6 col-lg-7 text-white">
+							<span> A.M.Upit</span>
+							<h2>kitabzadeh.com</h2>
+							<p>Kitab həyatın ən uzaq və qaranlıq yollarında insana işıq bəxş edən əfsanəvi çıraqdır. </p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="hs-item set-bg" data-setbg="{% static "img/fon2.jpg" %}">
+				<div class="container">
+					<div class="row">
+						<div class="col-xl-6 col-lg-7 text-white">
+							<span>F.Bekon</span>
+							<h2>kitabzadeh.com</h2>
+							<p>Kitab zamanın dalğaları üzərində səyahət edən və öz qiymətli yükünü ehtiyatla nəsillərdən- nəsillərə yetirən fikir gəmiləridir. </p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="slide-num-holder" id="snh-1"></div>
+		</div>
+	</section>
+	<!-- Hero section end -->
+
+	<!-- Features section -->
+<br>
+<br>
+	<section class="features-section">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-4 p-0 feature">
+					<div class="feature-inner">
+					</div>
+				</div>
+				<div class="col-md-4 p-0 feature">
+					<div class="feature-inner">
+						<div class="feature-icon">
+							<img src="{% static "img/icons/2.png" %}" alt="#">
+						</div>
+						<h2>Roman,Əsər</h2>
+					</div>
+				</div>
+				<div class="col-md-4 p-0 feature">
+					<div class="feature-inner">
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Features section end -->
+
+
+
+	<!-- letest product section -->
+
+	<section class="top-letest-product-section">
+		<div class="container">
+			<div class="section-title">
+
+			</div>
+			<div class="product-slider owl-carousel">
+				{% for post in roman.posts.all %}
+				<div class="product-item">
+					<div class="pi-pic">
+						<img src="{{ post.image.url }}" width="400" alt="">
+						<div class="pi-links">
+							<a  class="wishlist-btn">{{ post.price }} AZN</a>
+						</div>
+					</div>
+					<p>Paylaşıldı: {{ post.created }}</p>
+					<div class="pi-text">
+						<a href="{% url 'single' post.slug %}"><p>{{ post.title }}</p></a>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+	<!-- letest product section end -->
+	<!-- Banner section -->
+	<section class="banner-section">
+		<div class="container">
+			<div class="banner set-bg" data-setbg="{% static "img/banner.jpg" %}">
+				<span>Kitabzadeh</span>
+				<h2>Kitablar Burada</h2>
+				<a href="{% url 'createPost' %}" class="site-btn">Kitab Paylaş</a>
+			</div>
+		</div>
+	</section>
+	<!-- Banner section end  -->
+	<!-- Features section -->
+<br>
+<br>
+	<section class="features-section">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-4 p-0 feature">
+					<div class="feature-inner">
+					</div>
+				</div>
+				<div class="col-md-4 p-0 feature">
+					<div class="feature-inner">
+						<h2>Paylaşılan Kitablar</h2>
+					</div>
+				</div>
+				<div class="col-md-4 p-0 feature">
+					<div class="feature-inner">
+						<div class="feature-icon">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Features section end -->
+
+
+	<!-- Product filter section -->
+	<section class="product-filter-section">
+		<div class="container">
+			<div class="section-title">
+			</div>
+			<div class="row">
+				{% for post in posts %}
+				<div class="col-lg-3 col-sm-6">
+					<div class="product-item">
+						<div class="pi-pic">
+							<img src="{{ post.image.url }}" height="400"   alt="">
+							<div class="pi-links">
+								<a href="#" class="wishlist-btn">{{ post.price }} AZN</a>
+							</div>
+						</div>
+						<p>Paylaşıldı: {{ post.created }}</p>
+						<div class="pi-text">
+							<a href="{% url 'single' post.slug %}"><h4>{{ post.title }}</h4></a>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+	<!-- Product filter section end -->
+
+
+	<!-- Banner section -->
+	<section class="banner-section">
+		<div class="container">
+			<div class="banner set-bg" data-setbg="{% static "img/book.jpg" %}">
+				<span>Kitabzadeh</span>
+				<h2>Kitablar Burada</h2>
+				<a href="{% url 'createPost' %}" class="site-btn">Kitab Paylaş</a>
+			</div>
+		</div>
+	</section>
+	<!-- Banner section end  -->
+{% endblock %}
+
+

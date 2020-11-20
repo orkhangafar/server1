@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+	<!-- Product filter section -->
+	<section class="product-filter-section">
+		<div class="container">
+			<div class="section-title">
+				<h2></h2>
+			</div>
+			<div class="row">
+				{% for post in posts %}
+				<div class="col-lg-3 col-sm-6">
+					<div class="product-item">
+						<div class="pi-pic">
+							<img src="{{ post.image.url }}" height="400" alt="">
+							<div class="pi-links">
+								<a href="#" class="wishlist-btn">{{ post.price }} AZN</a>
+							</div>
+						</div>
+						<p>Paylaşıldı: {{ post.created }}</p>
+						<div class="pi-text">
+							<a href="{% url 'single' post.slug %}"><h3>{{ post.title }}</h3></a>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+	<!-- Product filter section end -->
+{% endblock %}

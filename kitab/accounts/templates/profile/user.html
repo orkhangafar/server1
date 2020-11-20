@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+
+
+	<!-- cart section end -->
+	<section class="cart-section spad">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8">
+					<div class="cart-table col-lg-5">
+                        <h3><center>{{ profile.user.username }}</center></h3>
+						<div class="cart-table-warp">
+							<center><img src="{{ profile.avatar.url }}" width="180"  height="270" alt=""></center>
+							<br>
+						</div>
+						<div class="total-cost">
+
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 card-right">
+					<a href="{% url 'createPost' %}" class="site-btn">Kitab Paylaş</a>
+                    <a href="{% url 'password-change' %}" class="site-btn">Şifrəni Yenilə</a>
+                    <a href="{% url 'logout' %}" class="site-btn">Çıxış Et</a>
+
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- cart section end -->
+	<!-- Features section -->
+<br>
+<br>
+	<section class="features-section">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-4 p-0 feature">
+					<div class="feature-inner">
+					</div>
+				</div>
+				<div class="col-md-4 p-0 feature">
+					<div class="feature-inner">
+						<div class="feature-icon">
+						</div>
+						<h2>Paylaşılan Kitablar (<span>{{ profile.user.userposts.count }}</span>)</h2>
+					</div>
+				</div>
+				<div class="col-md-4 p-0 feature">
+					<div class="feature-inner">
+						<div class="feature-icon">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Features section end -->
+
+	<!-- Product filter section -->
+	<section class="product-filter-section">
+		<div class="container">
+			<div class="section-title">
+			</div>
+			<div class="row">
+				{% for post in profile.user.userposts.all %}
+				<div class="col-lg-3 col-sm-6">
+					<div class="product-item">
+						<div class="pi-pic">
+							<img src="{{ post.image.url }}" height="360"   alt="">
+							<div class="pi-links">
+								<a href="#" class="wishlist-btn">{{ post.price }} AZN</a>
+							</div>
+						</div>
+						<div class="pi-text">
+							<a href="{% url 'single' post.slug %}"><h4>{{ post.title }}</h4></a>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+	<!-- Product filter section end -->
+{% endblock %}
